@@ -1,5 +1,20 @@
 let todoItems = [];
 
+function renderTodo(todo) {
+    const list = document.querySelector("#to-do-list-container");
+    list.insertAdjacentHTML('beforeend', `
+    <li style="list-style:none; margin:10px;" class="todo-item" data-key="${todo.id}">
+    <input id="${todo.id}" type="checkbox"/>
+    <label for="${todo.id}" class="tick js-tick"></label>
+    <span class="to-do-text"> ${todo.text}</span>
+    <button class="delete-todo js-delete-todo">
+    X
+    </button>
+    </li>
+    `);
+}
+
+
 function addTodo(text){
     const todo = {
         text,
@@ -8,9 +23,8 @@ function addTodo(text){
     };
 
     todoItems.push(todo);
-    console.log(todoItems);
+    renderTodo(todo);
 }
-
 
 
 const form = document.querySelector("#to-do-list-survey-form");
